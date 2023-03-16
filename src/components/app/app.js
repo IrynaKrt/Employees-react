@@ -1,10 +1,10 @@
 import { Component } from 'react';
 
 import AppInfo from '../app-info/app-info';
-import SearchPanel from '../search-panel/search-panel';
+import SearchPanel from '../search-panel/Search-panel';
 import AppFilter from '../app-filter/app-filter';
-import EmployersList from '../employers-list/employers-list';
-import EmployersAddForm from '../employers-add-form/employers-add-form';
+import EmployeesList from '../employees-list/Employees-list';
+import EmployeesAddForm from '../employees-add-form/Employees-add-form';
 
 import './app.css';
 
@@ -111,24 +111,23 @@ class App extends Component {
 
     render() {
         const {data, term, filter} = this.state;
-        const employers = this.state.data.length;
+        const Employees = this.state.data.length;
         const increased = this.state.data.filter(item => item.increase).length;
         const visibleData = this.filterPost(this.searchEmp(data, term), filter);
 
         return (
             <div className="app">
-                <AppInfo employers={employers} increased={increased}/>
+                <AppInfo Employees={Employees} increased={increased}/>
 
                 <div className="search-panel">
                     <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
                     <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}/>
                 </div>
-
-                <EmployersList data={visibleData}
-                                onDelete={this.deleteItem}
-                                onToggleProp={this.onToggleProp}
-                                changeSalary={this.changeSalary}/>
-                <EmployersAddForm onAdd={this.addItem}/>
+                <EmployeesList data={visibleData}
+                                    onDelete={this.deleteItem}
+                                    onToggleProp={this.onToggleProp}
+                                    changeSalary={this.changeSalary}/>
+                <EmployeesAddForm onAdd={this.addItem}/>
             </div>
         )
     }
